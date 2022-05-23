@@ -32,7 +32,8 @@ type TikTok struct {
 
 	errHandler func(error)
 
-	proxy *neturl.URL
+	proxy     *neturl.URL
+	userAgent string
 }
 
 // NewTikTok creates a tiktok instance that allows you to track live streams and
@@ -50,6 +51,7 @@ func NewTikTok() *TikTok {
 		warnHandler:  defaultLogHandler,
 		debugHandler: defaultLogHandler,
 		errHandler:   routineErrHandler,
+		userAgent:    userAgent,
 	}
 
 	setupInterruptHandler(
@@ -163,6 +165,10 @@ func (t *TikTok) SetProxy(url string, insecure bool) error {
 		},
 	}
 	return nil
+}
+
+func (t *TikTok) SetUserAgent(ua string) {
+	t.userAgent = ua
 }
 
 func setupInterruptHandler(f func(chan os.Signal)) {

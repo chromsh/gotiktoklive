@@ -92,7 +92,7 @@ func (t *TikTok) sendRequest(o *reqOptions) (body []byte, err error) {
 		// "Connection":      "keep-alive",
 		"Connection":      "close",
 		"Cache-Control":   "max-age=0",
-		"User-Agent":      userAgent,
+		"User-Agent":      t.userAgent,
 		"Accept":          "text/html,application/json,application/protobuf",
 		"Referer":         referer,
 		"Origin":          origin,
